@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from .forms import YourForm
 from Inv_App.utils import send_to_telegram
+from django.urls import reverse
 
 
 def home(request):
@@ -19,5 +20,5 @@ def form_view(request):
             # Additional logic or redirect
     else:
         form = YourForm()
-
-    return render(request, 'your_template.html', {'form': form})
+        return HttpResponseRedirect(reverse('home'))
+    return render(request, 'Inv_App/inv_form.html', context={'form': form})
